@@ -5,11 +5,6 @@ using UnityEngine;
 public class BackgroundController : MonoBehaviour
 {
 	public List<GameObject> backgrounds;
-
-	void Start()
-	{
-		
-	}
 		
 	void Spawn()
 	{

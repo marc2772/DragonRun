@@ -14,15 +14,18 @@ public class BackgroundMover : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		transform.Translate(backgroundMovement);
-
-		if(transform.position.x < -5 && !hasSpawnedAnother)
+		if(!TutorialManager.Instance.isActive)
 		{
-			Camera.main.SendMessage("Spawn");
-			hasSpawnedAnother = true;
-		}
+			transform.Translate(backgroundMovement);
+
+			if(transform.position.x < -5 && !hasSpawnedAnother)
+			{
+				Camera.main.SendMessage("Spawn");
+				hasSpawnedAnother = true;
+			}
 		
-		if(transform.position.x < -15)
-			Destroy(gameObject);
+			if(transform.position.x < -15)
+				Destroy(gameObject);
+		}
 	}
 }
