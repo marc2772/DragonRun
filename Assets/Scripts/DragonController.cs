@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class DragonController : Singleton<DragonController>
 {
-	public GameObject gameOver;
-	public Text distanceText;
-
 	private Animator animator;
 	private Rigidbody2D rigidBody;
 	private bool isDead = false;
@@ -42,10 +39,10 @@ public class DragonController : Singleton<DragonController>
 
 	void FixedUpdate()
 	{
-		if(!TutorialManager.Instance.isActive)
+		if(!TutorialManager.Instance.isActive && !isDead)
 		{
 			distance += 0.01f;
-			distanceText.text = distance.ToString("#.0");
+			MenuManager.Instance.SetDistance(distance);
 		}
 	}
 
@@ -63,7 +60,7 @@ public class DragonController : Singleton<DragonController>
 
 	void Die()
 	{
-		gameOver.SetActive(true);
+		MenuManager.Instance.Die();
 		isDead = true;
 	}
 
