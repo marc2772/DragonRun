@@ -21,6 +21,6 @@ public class TutorialManager : Singleton<TutorialManager>
 		isActive = false;
 		handCursor.SetActive(false);
 		grey.SetActive(false);
-		DragonController.Instance.SetKinematic(false);
+		DragonManager.Instance.SetKinematic(false);
 	}
 }

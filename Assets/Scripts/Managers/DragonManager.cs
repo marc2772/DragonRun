@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DragonController : Singleton<DragonController>
+public class DragonManager : Singleton<DragonManager>
 {
 	private Animator animator;
 	private Rigidbody2D rigidBody;
@@ -58,7 +58,7 @@ public class DragonController : Singleton<DragonController>
 		rigidBody.velocity = velocity;
 	}
 
-	void Die()
+	public void Die()
 	{
 		MenuManager.Instance.Die();
 		isDead = true;
