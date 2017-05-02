@@ -16,7 +16,7 @@ public class ObstacleManager : MonoBehaviour
 
 	void Update()
 	{
-		if(!TutorialManager.Instance.isActive)
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
 		{
 			time += Time.deltaTime;
 			if(time > timeToSpawnObstacles)
@@ -26,19 +26,6 @@ public class ObstacleManager : MonoBehaviour
 				time = 0;
 			}
 		}
-	}
-
-	void FixedUpdate()
-	{
-		if(!TutorialManager.Instance.isActive)
-		{
-
-		}
-	}
-
-	void OnCollisionEnter2D(Collision2D col)
-	{
-		DragonManager.Instance.Die();
 	}
 
 	void SetRandomTime()

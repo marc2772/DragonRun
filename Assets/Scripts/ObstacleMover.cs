@@ -13,9 +13,17 @@ public class ObstacleMover : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		transform.Translate(obstacleMover);
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
+		{
+			transform.Translate(obstacleMover);
 
-		if(transform.position.x < -15)
-			Destroy(gameObject);
+			if(transform.position.x < -15)
+				Destroy(gameObject);
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		DragonStateManager.Instance.Die();
 	}
 }

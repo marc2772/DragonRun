@@ -6,21 +6,17 @@ public class TutorialManager : Singleton<TutorialManager>
 {
 	public GameObject handCursor;
 	public GameObject grey;
-	public bool isActive = true;
 
 	void Update()
 	{
-		if(Input.GetMouseButtonDown(0))
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Tutorial)
 		{
-			Click();
+			if(Input.GetMouseButtonDown(0))
+			{
+				handCursor.SetActive(false);
+				grey.SetActive(false);
+				DragonStateManager.Instance.EndTutorial();
+			}
 		}
-	}
-
-	void Click()
-	{
-		isActive = false;
-		handCursor.SetActive(false);
-		grey.SetActive(false);
-		DragonManager.Instance.SetKinematic(false);
 	}
 }

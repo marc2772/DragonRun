@@ -14,7 +14,7 @@ public class BackgroundMover : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if(!TutorialManager.Instance.isActive)
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
 		{
 			transform.Translate(backgroundMovement);
 

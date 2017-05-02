@@ -27,7 +27,7 @@ public class SkyController : MonoBehaviour
 
 	void Update()
 	{
-		if(!TutorialManager.Instance.isActive)
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
 		{
 			time += Time.deltaTime;
 			if(time > timeToSpawnCloud)
@@ -41,7 +41,7 @@ public class SkyController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if(!TutorialManager.Instance.isActive)
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
 		{
 			//Rotate sun and moon
 			Vector3 sunRotation = sunAndMoon.transform.rotation.eulerAngles;

@@ -8,7 +8,6 @@ public class DragonManager : Singleton<DragonManager>
 {
 	private Animator animator;
 	private Rigidbody2D rigidBody;
-	private bool isDead = false;
 
 	private float distance = 0.0f;
 
@@ -21,25 +20,34 @@ public class DragonManager : Singleton<DragonManager>
 
 	void Update()
 	{
-		if(!TutorialManager.Instance.isActive)
+		switch(DragonStateManager.Instance.state)
 		{
-			if(Input.GetMouseButtonDown(0))
-			{
-				if(!isDead)
+			case DragonStateManager.State.Tutorial:
+				break;
+
+			case DragonStateManager.State.Alive:
+				if(Input.GetMouseButtonDown(0))
+				{
 					Fly();
-				else
+				}
+				if(transform.position.y < -5)
+				{
+					DragonStateManager.Instance.Die();
+				}
+				break;
+
+			case DragonStateManager.State.Dead:
+				if(Input.GetMouseButtonDown(0))
+				{
 					SceneManager.LoadScene("Default");
-			}
-			if(transform.position.y < -5)
-			{
-				Die();
-			}
+				}
+				break;
 		}
 	}
 
 	void FixedUpdate()
 	{
-		if(!TutorialManager.Instance.isActive && !isDead)
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
 		{
 			distance += 0.01f;
 			MenuManager.Instance.SetDistance(distance);
@@ -58,14 +66,9 @@ public class DragonManager : Singleton<DragonManager>
 		rigidBody.velocity = velocity;
 	}
 
-	public void Die()
-	{
-		MenuManager.Instance.Die();
-		isDead = true;
-	}
-
 	public void SetKinematic(bool kinematic)
 	{
 		rigidBody.isKinematic = kinematic;
+		rigidBody.velocity = new Vector2();
 	}
 }

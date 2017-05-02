@@ -13,9 +13,12 @@ public class CloudMover : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		transform.Translate(cloudMovement);
+		if(DragonStateManager.Instance.state == DragonStateManager.State.Alive)
+		{
+			transform.Translate(cloudMovement);
 
-		if(transform.position.x < -15)
-			Destroy(gameObject);
+			if(transform.position.x < -15)
+				Destroy(gameObject);
+		}
 	}
 }
